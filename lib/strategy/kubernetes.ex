@@ -85,7 +85,13 @@ defmodule Cluster.Strategy.Kubernetes do
   end
 
   defp load(%State{topology: topology, meta: meta} = state) do
+    IO.puts "!!! state -->"
+    IO.inspect state
+    
     new_nodelist = MapSet.new(get_nodes(state))
+    IO.puts "!!! new_nodelist -->"
+    IO.inspect new_nodelist
+    
     added = MapSet.difference(new_nodelist, meta)
     removed = MapSet.difference(state.meta, new_nodelist)
 
